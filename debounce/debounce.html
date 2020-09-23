@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>debounce</title>
+</head>
+<body>
+<script>
+// 防抖: 触发事件后在n秒内函数只能执行一次,如果在n秒内又触发了事件,则会重新计算函数执行时间.
+// 永远都是以最后一次触发函数的时间为界,在此之后n秒执行.
+
+// 保证触发停止之后,过wait秒必定执行一次
+// 如果立即执行的话,就最开始时候就要触发一次
+    function debounce(fn, wait, isImmediate) {
+        let timeout;
+        return function () {
+            let args = arguments;
+            let context = this;
+            if(timeout) {
+                clearTimeout(timeout);
+            }
+            if(isImmediate) {
+                let isCallNow = !timeout;
+                timeout = setTimeout(() => {
+                    timeout = null;
+                    fn.apply(context, args);
+                }, wait);
+                if(isCallNow) {
+                    fn.apply(context, args);
+                    clearTimeout(timeout);
+                }
+            }else {
+                timeout = setTimeout(() => {
+                    fn.apply(context, args);
+                }, wait)
+            }
+
+        }
+    }
+    function resizeHandler() {
+        console.log('resize');
+    }
+    window.addEventListener('resize', debounce(resizeHandler, 2000, false), false);
+</script>
+</body>
+</html>

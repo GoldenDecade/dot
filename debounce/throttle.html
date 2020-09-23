@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>throttle</title>
+</head>
+<body>
+<script>
+    // 节流: 连续触发事件但是在n秒中只执行一次函数,节流会稀释函数的执行频率
+    // 时间戳版: 每次函数执行完,在当前时间过wait秒这一阶段内,如果有触发,那么就会等到上次执行时间 + wait执行函数
+    // 定时器版: 每次触发完之后,如果还有触发,就以这次触发时间为界,再等wait秒,函数再次执行,在这个wait秒之内的所有触发都会忽略
+
+    // 时间戳版
+    /*function throttle(fn, wait) {
+        let previous = 0;
+        return function () {
+            let args = arguments;
+            let context = this;
+            let now = Date.now();
+            if(now - previous > wait) {
+                fn.apply(context, args);
+                previous = now;
+            }
+        }
+    }*/
+
+    // 定时器版
+    /*function throttle(fn, wait) {
+        let timeout;
+        return function () {
+            let context = this;
+            let args = arguments;
+            if(!timeout) {
+                timeout = setTimeout(() => {
+                    fn.apply(context, args);
+                    timeout = null;
+                }, wait)
+            }
+        }
+    }*/
+
+    function throttle(fn, wait) {
+        // 根据lastExec 判定是否执行过,从而使得第一次能够立马执行
+        // 因为每隔多长时间触发一次,那么就是距离上一次触发结束之后,如果那么函数就距离上次执行时间多少秒之后执行
+        let timeout, lastExec, remaining;
+        return function () {
+            let args = arguments;
+            let context = this;
+            let exec = function () {
+                fn.apply(context, args);
+                lastExec = Date.now();
+            };
+            let now = Date.now();
+            if(lastExec) {
+                remaining = wait - (now - lastExec);
+                if(remaining <= 0) {
+                    // 立马执行
+                    exec();
+                }else {
+                    // 保证在局上次执行wait秒内,如果有触发,那么就在上次执行 时间+wait 之后执行函数
+                    if(timeout) return;
+                    timeout = setTimeout(() => {
+                        exec();
+                        timeout = null;
+                    }, remaining)
+                }
+            }else {
+                // 第一次执行
+                exec();
+            }
+        }
+
+    }
+
+    function resizeHandler() {
+        console.log('resize');
+    }
+    window.addEventListener('resize', throttle(resizeHandler, 2000), false)
+</script>
+</body>
+</html>
