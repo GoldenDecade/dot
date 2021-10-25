@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function myNew(fn, ...args) {
+        let instance = {};
+        console.log(fn);
+        debugger
+        let res = fn.apply(instance, args); // 2 & 3 合并在一起了
+        debugger
+        if(fn.prototype) {
+            Object.setPrototypeOf(instance, fn.prototype);
+        }
+        if(typeof res === "function" || (typeof res === "object" && res !== null)) {
+            return res;
+        }
+        return instance;
+    }
+
+
+    var ArrayPrototypeSlice = Array.prototype.slice;
+    Function.prototype.bind1 = function(otherThis) {
+        if (typeof this !== 'function') {
+            // closest thing possible to the ECMAScript 5
+            // internal IsCallable function
+            throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+        }
+
+        var baseArgs= ArrayPrototypeSlice.call(arguments, 1),
+            baseArgsLength = baseArgs.length,
+            fToBind = this,
+            fNOP    = function() {},
+            fBound  = function() {
+                baseArgs.length = baseArgsLength; // reset to default base arguments
+                baseArgs.push.apply(baseArgs, arguments);
+                console.log(this)
+                return fToBind.apply(
+                    fNOP.prototype.isPrototypeOf(this) ? this : otherThis, baseArgs
+                );
+            };
+
+        debugger
+        // 这里进行了原型继承
+        if (this.prototype) {
+            // Function.prototype doesn't have a prototype property
+            fNOP.prototype = this.prototype;
+        }
+        fBound.prototype = new fNOP();
+
+        return fBound;
+    };
+    /*var obj = {
+        a: 5
+    };
+    var a = 1;
+    function foo(a, b) {
+        console.log(this.a);// 2
+        return a + b;
+    }
+    var bar = foo.bind1(obj, 2);
+    debugger
+    // console.log(bar(9));
+    var res = myNew(bar, 7, 8)
+    console.log(res);*/
+
+    // var f1 = new foo.bind(obj, 7, 8)
+    // f1();//
+
+    function Person(name) {
+        this.name = name;
+    }
+    /*Person.prototype.sayHello = function() {
+        console.log(`hello: ${this.name}`);
+    }*/
+    // let person = new Person('john')
+
+    let obj = {
+        name: 'july'
+    }
+    let fake_person = Person.bind1(obj)
+    fake_person('jack')
+    // console.log(obj.name);
+
+    // let p2 = new Person.bind(obj, 'wuli')
+
+  /* function Sub() {
+
+   }
+   Sub.prototype = new Person('sdf')
+    let s = new Sub();
+    console.log(Person.prototype.isPrototypeOf(s));*/
+
+</script>
+</body>
+</html>

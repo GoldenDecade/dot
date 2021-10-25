@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 500px;
+            height: 700px;
+            background-color: pink;
+            overflow: scroll;
+        }
+        img {
+            display: block;
+            width: 400px;
+            height: 500px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var wrapper = document.getElementById('wrapper')
+            var img = document.querySelectorAll('#wrapper img')
+            let length = img.length;
+            let n = 0;
+            function lazyLoad() {
+                console.log('lazyLoad');
+                var wrapper_height = parseInt(window.getComputedStyle(wrapper).height)
+                console.log('wrapper_height :', wrapper_height);
+                var scrollTop = wrapper.scrollTop;
+                for(var i = n; i < length; i++) {
+                    console.log(img[i].offsetTop - scrollTop);
+                    if(img[i].offsetTop - scrollTop < (wrapper_height + 20)) {
+                        img[i].src = img[i].getAttribute('data-src')
+                        n++
+                    }
+                }
+            }
+            lazyLoad()
+            wrapper.onscroll = lazyLoad
+        }
+    </script>
+</head>
+
+<body>
+<div id="wrapper">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimages.replacements.com%2Fimages%2Fimages1%2Fchina%2FC%2FP0000167445S0077T1.jpg&refer=http%3A%2F%2Fimages.replacements.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432492&t=19ba6bf387c76174b9368325f22a2548" alt="">
+    <img src="default.webp" data-src="https://img1.baidu.com/it/u=710579341,3491297175&fm=26&fmt=auto&gp=0.jpg" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.loveq.cn%2Fstore%2Fphoto%2F109%2F835%2F1098355%2F967140%2F1285523481421624754.jpg&refer=http%3A%2F%2Fwww.loveq.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432526&t=0c8793933fdfbfb45212dae437dfd982" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi10.topit.me%2Fo144%2F10144444134faa2010.jpg&refer=http%3A%2F%2Fi10.topit.me&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432545&t=2953dcead00cc108fcfeb5512fe72ab7" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F6c4e7dcbdf99fbf4e4ce738af4972d1d0b325e9130218-XxlcON_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432554&t=45062207f1f9b1e07ede9464203afa7d" alt="">
+    <img src="default.webp" data-src="https://img2.baidu.com/it/u=1269966464,1365690774&fm=26&fmt=auto&gp=0.jpg" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201208%2F12%2F20120812111308_HS3x8.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432574&t=387e6387b1ad51c781783343d5363ee5" alt="">
+    <img src="default.webp" data-src="https://img1.baidu.com/it/u=554986315,3821562988&fm=15&fmt=auto&gp=0.jpg" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs3.sinaimg.cn%2Fbmiddle%2F4b6ecb9f44fd8951b0842%26000&refer=http%3A%2F%2Fs3.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432574&t=7d1a1c449633e429ce563301613772fd" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi3.s1.dpfile.com%2Fpc%2Fe5b4af916fcb6d519fb5b646a11b549b%28700x700%29%2Fthumb.jpg&refer=http%3A%2F%2Fi3.s1.dpfile.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432574&t=28c819af1604f2fd5091e88ae2555036" alt="">
+    <img src="default.webp" data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsc02.alicdn.com%2Fkf%2FHTB1x9JjCuOSBuNjy0Fdq6zDnVXa0%2FBeautiful-maple-scenery-picture-5d-diy-diamond.jpg_640x640xz.jpg&refer=http%3A%2F%2Fsc02.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1631432574&t=50b4acff1b6c78d93b614be54a73714a" alt="">
+</div>
+
+<script>
+
+</script>
+</body>

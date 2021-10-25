@@ -13,18 +13,20 @@ let p1 = p.then(() => {
 }).catch(error => {
     console.log('error');
     console.log(error);
-})*/
+});*/
 
-Promise.race([ 1, 2, Promise.reject(3)]).then(res => {
+/*Promise.race([ 1, 2, Promise.reject(3)]).then(res => {
     console.log(res);
 }).catch(error => {
     console.log('error');
     console.log(error);
-})
+})*/
+/*
 Promise.race([ Promise.reject(3), 1, 2]).then(res => {
     console.log(res);
 }).catch(error => {
     console.log('error');
     console.log(error);
 })
+*/
 

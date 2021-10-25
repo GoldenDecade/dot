@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="connect1">连接ws1</button>
+<button id="sendMessage1" disabled>发送ws1</button>
+<button id="destroy1" disabled>关闭1</button>
+<div></div>
+<button id="connect2">连接ws2</button>
+<button id="sendMessage2" disabled>发送ws2</button>
+<button id="destroy2" disabled>关闭2</button>
+<script type="module">
+    import eventBus from "./js/eventBus.js";
+    import MyWebSocket from "./js/webSocket.js";
+
+    console.log('eventBus');
+    console.log(eventBus);
+    const userName = 'test1'
+    let pathname1 = '/ws1/'
+    let pathname2 = '/ws2/'
+    let connectBtn1 = document.querySelector('#connect1')
+    let connectBtn2 = document.querySelector('#connect2')
+    let sendMessageBtn1 = document.querySelector('#sendMessage1')
+    let sendMessageBtn2 = document.querySelector('#sendMessage2')
+    let destroyBtn1 = document.querySelector('#destroy1')
+    let destroyBtn2 = document.querySelector('#destroy2')
+
+    let wsUrl1 = `ws://127.0.0.1:1024${pathname1}?name=${userName}`
+    let wsUrl2 = `ws://127.0.0.1:1024${pathname2}?name=${userName}`
+
+    // 按钮注册事件
+    connectBtn1.addEventListener('click', ()=> reconnectWebSocket(wsUrl1))
+    connectBtn2.addEventListener('click', ()=> reconnectWebSocket(wsUrl2))
+    sendMessageBtn1.addEventListener('click', function (e) {
+        myWebSocket1.sendMsg({
+            ModeCode: 'message',
+            msg: 'm1'
+        })
+    })
+    sendMessageBtn2.addEventListener('click', function (e) {
+        myWebSocket2.sendMsg({
+            ModeCode: 'message',
+            msg: 'm2'
+        })
+    })
+    destroyBtn1.addEventListener('click', function (e) {
+        myWebSocket1.close()
+    })
+    destroyBtn2.addEventListener('click', function (e) {
+        myWebSocket2.close()
+    })
+    eventBus.onEvent('reconnect', reconnectWebSocket)
+
+    let myWebSocket1, myWebSocket2;
+    function reconnectWebSocket(url) {
+        let urlInfo = new URL(url)
+        if(urlInfo.pathname === pathname1){
+            if(!myWebSocket1) {
+                connectWebSocket1(wsUrl1)
+            }else {
+                clearTimeout(myWebSocket1.reconnectTimer)
+                myWebSocket1.reconnectTimer = null
+                connectWebSocket1(wsUrl1)
+            }
+        }else if(urlInfo.pathname === pathname2) {
+            if(!myWebSocket2) {
+                connectWebSocket2(wsUrl2)
+            }else {
+                clearTimeout(myWebSocket2.reconnectTimer)
+                myWebSocket2.reconnectTimer = null
+                connectWebSocket2(wsUrl2)
+            }
+        }
+    }
+    function connectWebSocket1(url) {
+        myWebSocket1 = new MyWebSocket(url);
+        myWebSocket1.init({
+            time: 10 * 1000,
+            reconnectTimeout: 3 * 1000
+        }, true)
+    }
+    function connectWebSocket2(url) {
+        myWebSocket2 = new MyWebSocket(url);
+        myWebSocket2.init({
+            time: 5 * 1000,
+            reconnectTimeout: 3 * 1000
+        }, true)
+    }
+
+    eventBus.onEvent('changeBtnState', setButtonState)
+    function setButtonState(state, url) {
+        let urlInfo = new URL(url)
+        if(urlInfo.pathname === pathname1){
+            switch(state) {
+                case 'open':
+                    connectBtn1.disabled = true;
+                    sendMessageBtn1.disabled = false;
+                    destroyBtn1.disabled = false;
+                    break
+                case 'close':
+                    console.log('url1 close');
+                    connectBtn1.disabled = false;
+                    sendMessageBtn1.disabled = true;
+                    destroyBtn1.disabled = true;
+                    break
+            }
+        }else if(urlInfo.pathname === pathname2) {
+            switch(state) {
+                case 'open':
+                    connectBtn2.disabled = true;
+                    sendMessageBtn2.disabled = false;
+                    destroyBtn2.disabled = false;
+                    break
+                case 'close':
+                    console.log('url2 close');
+                    connectBtn2.disabled = false;
+                    sendMessageBtn2.disabled = true;
+                    destroyBtn2.disabled = true;
+                    break
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

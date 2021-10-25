@@ -1,0 +1,279 @@
+.page {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 5rem;
+    height: 10.83rem;
+    overflow: hidden;
+    font-weight: normal;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    align-items: center;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 1.68rem;
+    height: 1.19rem;
+    font-weight: 400;
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 0.55rem;
+    line-height: 0.25rem;
+    white-space: pre;
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+    font-weight: normal;
+}
+
+.action-bg {
+    position: relative;
+    margin-top: -0.04rem;
+    width: 3.41rem;
+    height: 1.15rem;
+}
+
+.card-1 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 0.97rem;
+    line-height: 0.48rem;
+    white-space: pre;
+}
+
+.log {
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 0.4rem;
+}
+
+.list {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: column;
+    margin-top: 0.65rem;
+    font-weight: 400;
+}
+
+.header-i0 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    white-space: nowrap;
+}
+
+.email {
+    position: relative;
+    max-width: 4.47rem;
+    height: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.25rem;
+    color: #666666;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+    font-weight: normal;
+}
+
+.email-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 0.07rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.09rem;
+    border-color: #eeeeee;
+    width: 4.47rem;
+    height: 0.53rem;
+    line-height: 0.19rem;
+}
+
+.email-1 {
+    margin-top: 0.04rem;
+    margin-left: 0.19rem;
+    max-width: 4.07rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #aaaaaa;
+    font-size: 0.19rem;
+    font-weight: 400;
+}
+
+.header-i1 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 0.27rem;
+}
+
+.password {
+    position: relative;
+    max-width: 4.47rem;
+    height: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.25rem;
+    white-space: nowrap;
+    color: #666666;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+    font-weight: normal;
+}
+
+.view {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.07rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.09rem;
+    border-color: #eeeeee;
+    padding-right: 0.21rem;
+    padding-left: 0.19rem;
+    width: 4.47rem;
+    height: 0.53rem;
+}
+
+.logo {
+    margin-top: 0;
+    width: 1.29rem;
+    height: 0.09rem;
+}
+
+.icon-locate {
+    margin-top: 0;
+    width: 0.24rem;
+    height: 0.17rem;
+}
+
+.card-2 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-top: 0.37rem;
+    margin-left: 1.63rem;
+    line-height: 0.21rem;
+    white-space: pre;
+}
+
+.forgot-password {
+    color: #ff7d0d;
+    font-family: Helvetica;
+    font-size: 0.17rem;
+}
+
+.card-3 {
+    display: flex;
+    position: relative;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    margin-top: 0.21rem;
+}
+
+.header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 0.09rem;
+    width: 4.47rem;
+    height: 0.53rem;
+    box-shadow: 0 5px 11px 0 #ffd1aa;
+    background-color: #ff7d0d;
+    line-height: 0.21rem;
+    white-space: pre;
+}
+
+.log-1 {
+    margin-top: -0.01rem;
+    max-width: 4.31rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+}
+
+.tag {
+    position: relative;
+    margin-top: 0.17rem;
+    max-width: 4.31rem;
+    height: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.25rem;
+    white-space: nowrap;
+    color: #aaaaaa;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+}
+
+.body {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 0.13rem;
+    border-radius: 0.09rem;
+    width: 4.47rem;
+    height: 0.53rem;
+    box-shadow: 1px 5px 15px 3px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    font-weight: 400;
+}
+
+.icon {
+    margin-right: 0.07rem;
+    width: 0.35rem;
+    height: 0.27rem;
+}
+
+.info-1 {
+    margin-top: -0.01rem;
+    line-height: 0.21rem;
+    white-space: pre;
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 0.21rem;
+    font-weight: normal;
+}
+
+.card-4 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 0.23rem;
+    line-height: 0.21rem;
+    white-space: pre;
+}
+
+.sign-here {
+    color: #ff7d0d;
+    font-family: Helvetica;
+    font-size: 0.17rem;
+}

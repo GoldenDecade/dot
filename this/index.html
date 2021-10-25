@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this绑定优先级</title>
+</head>
+<body>
+<script>
+    // new > 显式绑定 > 隐式绑定 > 默认绑定
+    var f = function() {};
+    function P() {
+
+    }
+    var p = new P();
+    console.log(p instanceof f); // false
+
+    Function.prototype.bind = function(oThis) {
+        console.log(this);
+        if (typeof this !== 'function') {
+            // closest thing possible to the ECMAScript 5
+            // internal IsCallable function
+            throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+        }
+        console.log(123);
+        console.log(this);
+        console.log('123');
+        var aArgs   = Array.prototype.slice.call(arguments, 1),
+            fToBind = this;
+        console.log(fToBind);
+
+        var fNOP    = function() {},
+            fBound  = function() {
+                console.log(this);
+                console.log(this instanceof fNOP);
+                console.log(oThis);
+                return fToBind.apply(this instanceof fNOP
+                    ? this
+                    : oThis,
+                    // 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的
+                    aArgs.concat(Array.prototype.slice.call(arguments)));
+            };
+
+        // 维护原型关系
+        if (this.prototype) {
+            // Function.prototype doesn't have a prototype property
+            fNOP.prototype = this.prototype;
+        }
+        fBound.prototype = new fNOP();
+        return fBound;
+    };
+    var obj = {
+        a: 2
+    }
+    function foo(a) {
+        console.log('excu');
+        this.a = a;
+    }
+    var bar = foo.bind(obj);// 此时bind函数中的this指向foo;  fBound中的this指向window；
+    bar(3);
+    console.log(obj.a);// 3
+    var baz = new bar(4);// 在new bar的时候，本来是  this指向obj，但是new之后，this指向新创建的对象，不再指向obj；所以obj.a不发生改变，新创建对象有一个a属性，值为参数4
+
+    console.log(baz.a);//4
+    console.log(obj.a);//3
+
+    // new F()执行时，发生了以下事情：
+    //  1. 一个继承Foo.prototype的新对象被创建
+    //  2. 使用指定的参数调用构造函数Foo，并将this绑定到新创建的对象。new Foo等同于new Foo(),也就是没有指定参数列表，Foo不带任何参数调用的情况。
+    //  3. 由构造函数返回的对象就是new表达式的结果，如果构造函数没有显式返回一个对象，则使用步骤1创建的对象。（一般情况下，构造函数不返回值，但是用户可以选择主动返回对象，来覆盖正常的对象创建步骤。）
+
+    function Foo(){
+        getName = function(){ alert(1); };
+        return this;
+    }
+    Foo.getName = function(){ alert(2); };
+    Foo.prototype.getName = function(){ alert(3); };
+    var getName = function(){ alert(4); };
+    //  function getName(){ alert(5); }
+    Foo.getName(); // 2
+    getName();// 4
+    Foo().getName();//1
+    getName();// 1
+    new Foo.getName();// 2
+    new Foo().getName();// 1------->应该是3   先执行new Foo(),this执行Foo的实例，然后执行Foo.prototype.getName()-->3
+    new new Foo().getName();// 1---------->应该是3   先执行new Foo(),this执行Foo的实例，然后执行Foo.prototype.getName()-->3,然后再new一次；
+
+</script>
+</body>
+</html>

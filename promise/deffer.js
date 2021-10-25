@@ -124,7 +124,7 @@ class Deffer {
                 for (let i = 0; i < promises.length; i++) {
                     doThenFunc(promise, promises[i], (value) => {
                         result.push(value);
-                        if(!--remaining) {
+                        if (!--remaining) {
                             resolve(result);
                         }
                     }, reject)
@@ -173,7 +173,7 @@ function doThenFunc(promise, value, resolve, reject) {
 /*Deffer.all([1,2,3]).then(res => {
     console.log(res);
 })*/
-Deffer.race([1,2,3]).then(res => {
+Deffer.race([1, 2, 3]).then(res => {
     console.log(res);
 })
 Deffer.race([Deffer.reject(1)]).then(res => {

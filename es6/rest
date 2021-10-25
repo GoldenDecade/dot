@@ -1,0 +1,39 @@
+var defaults = {
+    options: {
+        remove: true,
+        enable: false,
+        instance: {}
+    },
+    log: {
+        warn: true,
+        error: true
+    }
+};
+var config = {
+    options: {
+        remove: false,
+        instance: null
+    }
+};
+
+{
+    // (带默认值赋值的)解构
+    let {
+        options: {
+            remove = defaults.options.remove,
+            enable = defaults.options.enable,
+            instance = defaults.options.instance
+        } = {},
+        log: {
+            warn = defaults.log.warn,
+            error = defaults.log.error
+        } = {}
+    } = config;
+    // 重组
+    config = {
+        options: { remove, enable, instance },
+        log: { warn, error }
+    };
+}
+defaults.log.warn = 'a'
+console.log(config);

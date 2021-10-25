@@ -1,0 +1,280 @@
+
+.page {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 50vw;
+    height: 108.27vw;
+    overflow: hidden;
+    font-weight: normal;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    align-items: center;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 16.8vw;
+    height: 11.87vw;
+    font-weight: 400;
+}
+
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 5.47vw;
+    line-height: 2.53vw;
+    white-space: pre;
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+    font-weight: normal;
+}
+
+.action-bg {
+    position: relative;
+    margin-top: -0.4vw;
+    width: 34.13vw;
+    height: 11.47vw;
+}
+
+.card-1 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 9.73vw;
+    line-height: 4.8vw;
+    white-space: pre;
+}
+
+.log {
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 4vw;
+}
+
+.list {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: column;
+    margin-top: 6.53vw;
+    font-weight: 400;
+}
+
+.header-i0 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    white-space: nowrap;
+}
+
+.email {
+    position: relative;
+    max-width: 44.67vw;
+    height: 2.53vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2.53vw;
+    color: #666666;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+    font-weight: normal;
+}
+
+.email-wrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 0.67vw;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.93vw;
+    border-color: #eeeeee;
+    width: 44.67vw;
+    height: 5.33vw;
+    line-height: 1.87vw;
+}
+
+.email-1 {
+    margin-top: 0.4vw;
+    margin-left: 1.87vw;
+    max-width: 40.67vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #aaaaaa;
+    font-size: 1.87vw;
+    font-weight: 400;
+}
+
+.header-i1 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 2.67vw;
+}
+
+.password {
+    position: relative;
+    max-width: 44.67vw;
+    height: 2.53vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2.53vw;
+    white-space: nowrap;
+    color: #666666;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+    font-weight: normal;
+}
+
+.view {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.67vw;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.93vw;
+    border-color: #eeeeee;
+    padding-right: 2.13vw;
+    padding-left: 1.87vw;
+    width: 44.67vw;
+    height: 5.33vw;
+}
+
+.logo {
+    margin-top: 0;
+    width: 12.93vw;
+    height: 0.93vw;
+}
+
+.icon-locate {
+    margin-top: 0;
+    width: 2.4vw;
+    height: 1.73vw;
+}
+
+.card-2 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-top: 3.73vw;
+    margin-left: 16.27vw;
+    line-height: 2.13vw;
+    white-space: pre;
+}
+
+.forgot-password {
+    color: #ff7d0d;
+    font-family: Helvetica;
+    font-size: 1.73vw;
+}
+
+.card-3 {
+    display: flex;
+    position: relative;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
+    margin-top: 2.13vw;
+}
+
+.header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 0.93vw;
+    width: 44.67vw;
+    height: 5.33vw;
+    box-shadow: 0 5px 11px 0 #ffd1aa;
+    background-color: #ff7d0d;
+    line-height: 2.13vw;
+    white-space: pre;
+}
+
+.log-1 {
+    margin-top: -0.13vw;
+    max-width: 43.07vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+}
+
+.tag {
+    position: relative;
+    margin-top: 1.73vw;
+    max-width: 43.07vw;
+    height: 2.53vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 2.53vw;
+    white-space: nowrap;
+    color: #aaaaaa;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+}
+
+.body {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1.33vw;
+    border-radius: 0.93vw;
+    width: 44.67vw;
+    height: 5.33vw;
+    box-shadow: 1px 5px 15px 3px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    font-weight: 400;
+}
+
+.icon {
+    margin-right: 0.67vw;
+    width: 3.47vw;
+    height: 2.67vw;
+}
+
+.info-1 {
+    margin-top: -0.13vw;
+    line-height: 2.13vw;
+    white-space: pre;
+    color: #000000;
+    font-family: Helvetica;
+    font-size: 2.13vw;
+    font-weight: normal;
+}
+
+.card-4 {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    align-self: center;
+    flex-direction: row;
+    margin-top: 2.27vw;
+    line-height: 2.13vw;
+    white-space: pre;
+}
+
+.sign-here {
+    color: #ff7d0d;
+    font-family: Helvetica;
+    font-size: 1.73vw;
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<div style="height: 10000px">
+
+</div>
+<!--<script>
+    async function timeout() {
+        return $.ajax({
+            url: 'a.json',
+            success: function (res) {
+                console.log(res);
+                return res;
+            }
+        })
+    }
+    timeout().then(function (res) {
+        console.log('timeout');
+        console.log(res);
+    })
+    console.log('这里最先执行');
+
+</script>-->
+<script>
+    function f() {
+        function timeout() {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: 'a.json',
+                    success: function (res) {
+                        console.log('这里第二执行');
+                        console.log(res);
+                        resolve(res);
+                    }
+                })
+            })
+        }
+        async function syncHandler() {
+            let res = await timeout();
+            console.log(res);
+            console.log('这里第三执行');
+            console.log('await');
+
+        }
+        syncHandler();
+        console.log('这里最先执行');
+    }
+     // f();
+
+
+    function searchIndex(arr, target, start, end) {
+        let targetIndex = -1;
+        if(start > end) {
+            return targetIndex;
+        }
+        let midIndex = Math.floor((start + end) / 2);
+
+        if(arr[midIndex] === target) {
+            return midIndex;
+        }else if(arr[midIndex] > target) {
+            return searchIndex(arr, target, start, midIndex - 1)
+        }else {
+            return searchIndex(arr, target, midIndex + 1, end)
+        }
+    }
+    var arr = [1,2,3,4,5,6,7];
+    // console.log(searchIndex(arr, 6, 1, 5));
+
+
+    class Scheduler{
+        constructor(limit) {
+            this.maxRunCounts = limit;
+            this.queue = [];
+            this.currentRunCounts = 0;
+        }
+        add(fn, time, ...rest) {
+            let promiseCreator = function () {
+                return new Promise(resovle => {
+                    setTimeout(() => {
+                        resovle(fn(...rest));
+                    }, time)
+                })
+            };
+            this.queue.push(promiseCreator);
+        }
+        start() {
+            for(let i = 0; i < this.maxRunCounts; i++) {
+                this.taskExec();
+            }
+        }
+        taskExec(){
+            if(!this.queue.length || this.currentRunCounts > this.maxRunCounts) {
+                return ;
+            }
+            console.log('length : ', this.queue.length);
+            this.currentRunCounts++;
+            this.queue.shift()().then(() => {
+                this.currentRunCounts--;
+                this.taskExec();
+            })
+        }
+    }
+    let handler1 = function(a, b) {
+        console.log(a + b);
+    }
+    let handler2 = function(a, b) {
+        console.log(a * b);
+    }
+    let schedule = new Scheduler(2);
+    schedule.add(handler1, 200, 1, 2);
+    schedule.add(handler2, 400, 1, 2);
+    schedule.add(handler1, 800, 1, 2);// 1000 3
+    schedule.add(handler2, 500, 1, 2);// 900 2
+    // schedule.start();
+
+    /*function debounce(fn, delay = 300) {
+        //默认300毫秒
+        let timer;
+        return function () {
+            const args = arguments;
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(() => {
+                fn.apply(this, args); // 改变this指向为调用debounce所指的对象
+            }, delay);
+        };
+    }*/
+
+    /*window.addEventListener(
+        "scroll",
+        debounce(() => {
+            console.log(111);
+        }, 1000)
+    );*/
+
+    /*function throttle(fn, delay) {
+        let flag = true;
+        return () => {
+            if (!flag) return;
+            flag = false;
+            timer = setTimeout(() => {
+                fn();
+                flag = true;
+            }, delay);
+        };
+    }*/
+
+
+
+    /*function debounce(fn, delay) {
+        let timer = null;
+        return function () {
+            if(timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(() => {
+                fn.apply(this, arguments); // 改变this 指向为 debounce所指的对象
+            }, delay)
+        }
+    }
+    window.addEventListener(
+       "scroll",
+       debounce(() => {
+           console.log(111);
+       }, 1000)
+   );*/
+
+    function throttle(fn, delay) {
+        let flag = true;
+        return function () {
+            if(!flag) {
+                return;
+            }
+            flag = false;
+            setTimeout(() => {
+                fn.apply(this, arguments)
+                flag = true;
+            }, delay)
+        }
+    }
+    window.addEventListener(
+        "scroll",
+        throttle(() => {
+            console.log(111);
+        }, 1000)
+    );
+</script>
+</body>
+</html>

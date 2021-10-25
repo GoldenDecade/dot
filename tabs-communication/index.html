@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器标签页之间通信</title>
+</head>
+<body>
+浏览器标签页之间通信:
+1. cookie + setInterval
+2. localstorage;  window.onstorage 监听
+3. websocket
+<script>
+
+    setTimeout(() => {
+        localStorage.setItem('a', 1)
+    }, 3000)
+</script>
+</body>
+</html>

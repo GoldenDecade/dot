@@ -1,0 +1,39 @@
+// setTimeout 模拟 setInterval
+function mySetInterval(fn, t) {
+    let obj = {}
+    obj.timer = null;
+    function interval() {
+        fn();
+        obj.timer = setTimeout(interval, t)
+    }
+    interval();
+    obj.cancel = function () {
+        clearTimeout(obj.timer);
+    };
+    return obj;
+}
+var interval1 = mySetInterval(function () {
+    console.log(1);
+}, 1000);
+var interval2 = mySetInterval(function () {
+    console.log(2);
+}, 1000);
+
+setTimeout(() => {
+    interval1.cancel();
+}, 5000)
+setTimeout(() => {
+    interval2.cancel();
+}, 8000)
+
+
+//  setInterval 模拟 setTimeout
+function mySetTimeout (fn, t) {
+    let interval = setInterval(() => {
+        fn();
+        clearInterval(interval)
+    }, t)
+}
+mySetTimeout(function () {
+    console.log('mySetTimeout');
+}, 2000)

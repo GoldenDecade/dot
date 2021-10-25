@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*new Promise(function (resolve) {
+        resolve(1)
+    }).then(() => {
+        console.log(1);
+        return false;
+    }).then((res) => {
+        console.log(res);
+        console.log(2);
+    })*/
+
+</script>
+<!--<script>
+
+    Function.prototype.myCall = function(context, ...args) {
+        if(!context || context === null) {
+            context = window;
+        }
+        let fn = Symbol();
+        context[fn] = this;
+        return context[fn](...args);
+    }
+
+    Function.prototype.myApply = function (context, args) {
+        if(!context || context === null) {
+            context = window;
+        }
+        let fn = Symbol();
+        context[fn] = this;
+        return context[fn](...args);
+    }
+    let age = 10;
+    let obj = {
+        age: 11
+    }
+    // new 忽略this的改变
+    // this的改变
+    Function.prototype.bind1 = function (context, ...args) {
+        let fn = this;
+        function fnToBind() {
+            return fn.apply(context, args.concat(arguments));
+        }
+        return fnToBind;
+    }
+    function ageFunc(age) {
+        console.log(this);
+        this.age = age;
+    }
+
+   /* let bindAgeFunc = ageFunc.bind1(obj, 21);
+    bindAgeFunc(19);
+    console.log(obj.age);
+    console.log(age);*/
+    let bindAgeFunc1 = ageFunc.bind1(null, 28);
+    bindAgeFunc1();
+    console.log(age);
+
+</script>-->
+
+<!--<script>
+    let len = 10;
+    function fn() {
+        console.log(this);
+        console.info(this.len)
+
+    }
+    fn(); // undefined
+    let Person = {
+        len: 5,
+        say: function() {
+            fn(); // undefined
+            arguments[0](); // undefined
+        }
+    }
+    Person.say(fn);
+</script>-->
+
+<script>
+    function createIterator(items) {
+        let keys = Object.keys(items);
+        let i = 0;
+        return {
+            next() {
+                let done = i >= keys.length;
+                let value = !done ? items[keys[i]] : undefined;
+                i++;
+                return {
+                    done,
+                    value
+                }
+            }
+        }
+    }
+    // let it = createIterator([1,2,3]);
+    let it = createIterator({a: 1, b: 2, c: 3});
+    /*console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());*/
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

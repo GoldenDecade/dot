@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span id="playMode">单曲循环</span>
+<script>
+    // 顺序播放 sequentPlay
+    // 随机播放 shufflePlay
+    // 单曲循环 singlePlay
+    // 列表循环 circulationPlay
+    const playModeHandler = {
+	    sequentPlay: function () {
+			document.querySelector('#playMode').innerHTML = '顺序播放'
+        },
+	    shufflePlay: function () {
+		    document.querySelector('#playMode').innerHTML = '随机播放'
+	    },
+	    singlePlay: function () {
+		    document.querySelector('#playMode').innerHTML = '单曲循环'
+	    },
+	    circulationPlay: function () {
+		    document.querySelector('#playMode').innerHTML = '列表循环'
+	    }
+    }
+    class PlayMode {
+	    constructor() {
+            this._mode = [
+				'sequentPlay',
+                'shufflePlay',
+                'singlePlay',
+                'circulationPlay'
+            ]
+            this._currentMode = ''
+	    }
+		setMode(mode) {
+			this._currentMode = mode;
+			// 2. 触发相应的事件
+			this._handler();
+        }
+		switchMode() {
+			// 1. mode 改变
+			this._currentMode = this._mode[(this._mode.indexOf(this._currentMode) + 1) % this._mode.length];
+            // 2. 触发相应的事件
+            this._handler();
+        }
+        _handler() {
+			playModeHandler[this._currentMode]();
+        }
+    }
+	let playController = new PlayMode();
+	playController.setMode('sequentPlay');
+    document.getElementById('playMode').addEventListener('click', function (){
+	    playController.switchMode();
+    }, {
+		capture: false,
+        once: false, // 如果是 true, listener 会在其调用之后自动移除
+        passive: false, // 如果是 true, listener 永远不会调用 preventDefault()
+
+    })
+
+</script>
+</body>
+</html>

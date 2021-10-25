@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            margin: 50px;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            box-shadow: inset 20px 10px 5px 2px rgba(255, 0, 0, 0.1);
+        }
+
+        .wrapper {
+            transform: perspective(800px);
+            backface-visibility: hidden;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background: pink;
+            animation: 3s anim infinite linear;
+        }
+        @keyframes anim {
+            0% {
+                transform: rotateX(0);
+            }
+            25% {
+                transform: rotateX(90deg);
+            }
+            50% {
+                transform: rotateX(180deg);
+            }
+            75% {
+                transform: rotateX(270deg);
+            }
+            100% {
+                transform: rotateX(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+logs加上时间戳
+<div class="wrapper">
+    <div class="inner">
+        hello
+    </div>
+</div>
+<div class="box">wheel</div>
+<script>
+    console.log(1);
+    console.log(2);
+
+    for(var i = 0; i < 100; i++) {
+        console.log(i * 2);
+    }
+</script>
+</body>
+</html>

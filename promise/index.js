@@ -21,10 +21,15 @@ class Deferred {
             // 模拟异步 （微任务）
             setTimeout(() => {
                 this.value = value;
+                console.log('setTimeout value : ', value);
                 this.status = STATUS.FULFILLED;
                 // 调用回调
-                for (let fn of this.resolveQueue) {
+                /*for (let fn of this.resolveQueue) {
                     fn(this.value)
+                }*/
+                for (let i = 0; i < this.resolveQueue.length; i++) {
+                    console.log('i : ', i);
+                    this.resolveQueue[i](this.value);
                 }
             }, 200)
         };
@@ -144,22 +149,23 @@ function doThenFunc(promise, value, resolve, reject) {
     resolve(value);
 }
 
-let defer = Deferred.resolve(5)
-    setTimeout(() => {
-        defer.then(res => {
-            console.log(res);
-            return res;
-        })
-            .then(res => {
-                console.log(res);
-                throw new Error('error---');
-            }).catch(reason => {
-            console.log('error');
-        })
-    }, 3000)
 
 
-/*
+// let defer = Deferred.resolve(5)
+//     setTimeout(() => {
+//         defer.then(res => {
+//             console.log(res);
+//             return res;
+//         })
+//             .then(res => {
+//                 console.log(res);
+//                 throw new Error('error---');
+//             }).catch(reason => {
+//             console.log('error');
+//         })
+//     }, 3000)
+
+
 new Deferred((resolve, reject) => {
     console.log(Date.now());
     setTimeout(() => {
@@ -182,7 +188,7 @@ new Deferred((resolve, reject) => {
 ).then(
     res => {
         console.log(Date.now());
-        let result = res * 1;
+        let result = res + 1;
         console.log(result);
         return result;
     },
@@ -192,7 +198,7 @@ new Deferred((resolve, reject) => {
         console.log(result);
         return result;
     }
-).then(
+)/*.then(
     res => {
         console.log(Date.now());
         let result = res * 1;

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Title</title>
+</head>
+<body>
+<button id="connect">
+    连接
+</button>
+<button disabled
+        id="sendMessage">
+    发送
+</button>
+<button disabled
+        id="destroy">
+    关闭
+</button>
+<script type="module">
+    const name = 'test'//连接用户名
+    let connect = document.querySelector('#connect'),//连接按钮
+        sendMessage = document.querySelector('#sendMessage'),//发送按钮
+        destroy = document.querySelector('#destroy'),//关闭按钮
+        wsUrl = 'ws://127.0.0.1:1024/ws/?name=' + name,//连接地址
+        ws;
+
+    connect.addEventListener('click', connectWebSocket)
+    sendMessage.addEventListener('click', function (e) {
+        ws.send(JSON.stringify({
+            ModeCode: "message",
+            msg: 'hello'
+        }))
+    })
+    destroy.addEventListener('click', function (e) {
+        ws.close()
+        ws = null
+    })
+
+    function connectWebSocket () {
+        if(!ws) {//第一次执行，初始化或ws断开时可执行
+            ws = new WebSocket(wsUrl)
+            initWebSocket()
+        }
+    }
+
+    function initWebSocket () {
+        ws.onopen = function (e) {
+            setButtonState('open')
+            console.log('开启')
+        }//连接上时回调
+        ws.onclose = function (e) {
+            setButtonState('close')
+            console.log('关闭')
+        }//断开连接时回调
+        ws.onmessage = function (e) {
+            let data = JSON.parse(e.data)
+            console.log('收到消息' + data.msg)
+        }//收到服务端消息
+        ws.onerror = function (e) {
+            setButtonState('close')
+            console.log('出错')
+        }//连接出错
+    }
+
+    /*
+  * 设置按钮是否可点击
+  * @param state：open表示开启状态，close表示关闭状态
+  */
+    function setButtonState (state) {
+        switch(state) {
+            case 'open':
+                connect.disabled = true
+                sendMessage.disabled = false
+                destroy.disabled = false
+                break;
+            case 'close':
+                connect.disabled = false
+                sendMessage.disabled = true
+                destroy.disabled = true
+                break;
+        }
+    }
+</script>
+</body>
+</html>
