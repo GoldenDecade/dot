@@ -1,12 +1,16 @@
 {
   "name": "ts-todo-item",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "main": "dist/ts-todo-item.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "package": "vue-cli-service build --target lib --name ts-todo-item ./src/components/todo-item.tsx",
+    "lint": "vue-cli-service lint",
+    "fix": "npx eslint --fix --ext .ts,.vue src"
   },
+  "typings": "types/ts-todo-item.d.ts",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",

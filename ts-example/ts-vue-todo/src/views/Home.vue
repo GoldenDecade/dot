@@ -19,7 +19,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import TodoItem from '../components/todo-item'
+// import TodoItem from '../components/todo-item'
+import TodoItem from 'ts-todo-item'
 
 interface Item {
 	text: string
