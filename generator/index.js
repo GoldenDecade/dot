@@ -43,11 +43,11 @@ function *circle() {
     }
     console.log(i);
 }
-let it = circle();
-console.log(it.next());
-console.log(it.next(9));
-console.log(it.next(8));
-console.log(it.next(7));
+let it = circle(); // 1
+console.log(it.next()); // {value: 0, done: false}
+console.log(it.next(9)); // z: 0 x: 9; 2 {value: 0, done: false }
+console.log(it.next(8)); // z: 0 x: 8  3 {value: 0, done: false}
+console.log(it.next(7)); // z: 0 x: 7 4
 console.log(it.next(6));
 console.log(it.next(5));
 */

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap {
+            overflow: hidden;
+        }
+        .wrap > div {
+            float: left;
+            background-color: pink;
+        }
+        [class^="box"] {
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+        .box1, .box3 {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box1">1</div>
+    <div class="box2">
+        <p>sDDD</p>
+        <p>sDDD</p>
+        <p>sDDD</p>
+        <p>sDDD</p>
+        <p>sDDD</p>
+    </div>
+    <div class="box3">3</div>
+</div>
+</body>
+</html>

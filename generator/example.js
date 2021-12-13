@@ -66,7 +66,8 @@ console.log(it.next(9));// z: 0  x: 9 --- 2 {value: 0, done: false}
 console.log(it.next(8));// z: 0  x: 8 --- 3 {value: 0, done: false}
 console.log(it.next(7));// z: 0  x: 7 --- 4 {value: 0, done: false}
 console.log(it.next(6));// z: 0  x: 6 --- 5 {value: 0, done: false}
-console.log(it.next(5));// z: 0  x: 5 --- 5 {value: undefined, done: true}*/
+console.log(it.next(5));// z: 0  x: 5 --- 5 {value: undefined, done: true}
+*/
 
 
 // 迭代器: 原理就是这个对象有 Symbol.iterator 属性
@@ -80,16 +81,16 @@ obj[Symbol.iterator] = function* () {
         yield obj[key]
     }
 }
-/*for(let val of obj) {
+for(let val of obj) {
     console.log(val);
-}*/
+}
 
 // 异步处理 (这个很有意思)
 function time() {
     console.log(Date.now());
     setTimeout(() => {
         console.log(Date.now());
-        it.next(123);
+	    console.log(it.next(123));
     }, 2000)
 }
 
@@ -98,6 +99,6 @@ function *gen() {
     console.log(res);
 }
 let it = gen();
-it.next();
+console.log(it.next());
 
 

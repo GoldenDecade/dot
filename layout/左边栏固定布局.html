@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>两栏布局</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+    <style>
+        html, body, div {
+            height: 100%;
+        }
+        .left {
+            width: 200px;
+            background: pink;
+        }
+        .right {
+            background: green;
+            overflow: hidden;
+        }
+
+        [fl] {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="left" fl></div>
+<div class="right">左边栏固定, 右边自动伸缩</div>
+</body>
+</html>

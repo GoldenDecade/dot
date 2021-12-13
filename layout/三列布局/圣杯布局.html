@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+    <style>
+        html, body {
+        }
+        .wrap {
+            min-width: 400px;
+        }
+        .content {
+            padding: 0 200px;
+            overflow: hidden;
+        }
+        .content div {
+            float: left;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+        .middle {
+            width: 100%;
+            background: pink;
+        }
+        .left {
+            position: relative;
+            left: -200px;
+            width: 200px;
+            margin-left: -100%;
+            background: #764c5b;
+        }
+        .right {
+            position: relative;
+            right: -200px;
+            width: 200px;
+            margin-left: -200px;
+            background: #764c5b;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header>header</header>
+    <div class="content">
+        <div class="middle">
+            <p>sdafdaf</p>
+            <p>sdafdaf</p>
+            <p>sdafdaf</p>
+            <p>sdafdaf</p>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <footer>footer</footer>
+</div>
+</body>
+</html>

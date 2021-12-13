@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	// var worker = new Worker('work.js');
+	// setTimeout(() => {
+	// 	console.log('postMessage a');
+	// 	worker.postMessage({type: 'a'})
+	// })
+	// setTimeout(() => {
+	// 	console.log('postMessage b');
+	// 	worker.postMessage({type: 'b'})
+	// }, 1)
+	// worker.onmessage = function (event) {
+	//     console.log('Received message ' + event.data);
+	// }
+	if (!window.Worker) return;
+	for (let i = 0; i < 2; i++) {
+		let worker = new Worker('work.js')
+		worker.postMessage(i === 0 ? {type: 'a'} : {type: 'b'})
+		worker.onmessage = function (event) {
+			console.log('Received message ' + event.data);
+			worker.terminate()
+		}
+	}
+</script>
+</body>
+</html>

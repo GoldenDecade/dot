@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+    <style>
+        html, body, div {
+            height: 100%;
+        }
+        [fl] {
+            float: left;
+        }
+        [fr] {
+            float: right;
+        }
+        .left, .right {
+            width: 200px;
+            background-color: pink;
+        }
+        .middle {
+            margin: 0 200px;
+            background-color: green;
+            /* 文字超出之后 如何处理 */
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="left" fl>234</div>
+<div class="right" fr>cxvsdf</div>
+<div class="middle">
+    sdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwersdfadfwerv
+</div>
+</body>
+</html>

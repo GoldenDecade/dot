@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+    <style>
+        html, body {
+        }
+        .wrap {
+            min-width: 400px;
+        }
+        .content {
+            overflow: hidden;
+        }
+        .content > div {
+            float: left;
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+        .middle {
+            width: 100%;
+            background: #671212;
+        }
+        .middle-inner {
+            margin: 0 200px;
+            background: pink;
+        }
+        .left {
+            margin-left: -100%;
+            width: 200px;
+            background: #764c5b;
+        }
+        .right {
+            margin-left: -200px;
+            width: 200px;
+            background: #764c5b;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header>header</header>
+    <div class="content">
+        <div class="middle">
+            <div class="middle-inner">
+                <pre>
+                          <code style="white-space: break-spaces">
+                    需求和圣杯布局是一样的；
+                    据说双飞翼是玉伯大大提的，思路是：middle是鸟的身体，left和right是鸟的翅膀，先把主要的东西middle放好，再将翅膀移到合适的位置；
+                    步骤
+
+                    middle部分要放在content的最前部分，然后是left，reight；
+                    浮动让三者在一行，出现高度塌陷，content清浮动；
+                    middle宽度设为100%，占满；
+                    left上去，拉到最左边：margin-left: -100%; right同理：margin-left:-200px;
+                    以上，都和圣杯布局一样；
+                    因为现在middle的内容被left和right覆盖了，我们除了考虑设置外围content的padding之外，还可以考虑用margin把middle拉过来；
+                    在middle中加一个内部元素middle-inner，设置其margin:0 200px;
+
+                    链接：https://juejin.cn/post/6844903827603193863
+                </code>
+                </pre>
+            </div>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <footer>footer</footer>
+</div>
+</body>
+</html>
