@@ -7,6 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    1ag
+    王sdf
+    <script>
+	    var xhr = new XMLHttpRequest()
+	    xhr.responseType = 'arraybuffer'
+	    xhr.onreadystatechange = function () {
+		    if (xhr.readyState === 4) {
+			    // console.log(xhr);
+			    console.log(xhr.response);
+			    const blob = new Blob([xhr.response], {
+				    type: 'application/zip'
+			    });
+			    const zipUrl = URL.createObjectURL(blob);
+			    const link = document.createElement('a');
+			    link.href = zipUrl;
+			    link.download = 'pub.zip';
+			    link.click();
+		    }
+	    }
+	    xhr.open('get', '/download', true)
+	    xhr.send(null)
+    </script>
 </body>
 </html>
