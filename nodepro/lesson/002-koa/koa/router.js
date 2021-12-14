@@ -24,7 +24,7 @@ class Router {
 				console.log(ctx.url)
 				console.log(ctx.method);
 				console.log(item.path);
-				if (item.method === ctx.method && (ctx.url.indexOf(item.path) === 0)) {
+				if (item.method === ctx.method && (ctx.url === item.path)) {
 					middleware = item.middleware
 					break
 				}

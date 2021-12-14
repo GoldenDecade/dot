@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+王ssdfd12
+<script>
+    var xhr = new XMLHttpRequest()
+    xhr.responseType = 'arraybuffer'
+    xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4) {
+			// console.log(xhr);
+			console.log(xhr.response);
+			const blob = new Blob([xhr.response], {
+				type: 'application/zip'
+			});
+			const zipUrl = URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = zipUrl;
+			link.download = 'a.zip';
+			link.click();
+        }
+    }
+    xhr.open('get', '/download', true)
+    xhr.send(null)
+</script>
+</body>
+</html>
